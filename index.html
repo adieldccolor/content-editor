@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Pages</title>
+
+  <base href="./">
+</head>
+<body>
+  <style>body,html{margin: 0;padding: 0;}.ng-hide{display: none;}</style>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/vendor.css">
+  <link rel="stylesheet" href="css/app.css">
+
+  <!-- Here we can override configuration for our environment -->
+  <script type="text/javascript">
+  _envConfig = {
+    // viewsUrl: '/UserControl/MortgageCEO_Forms/'
+  };
+  </script>
+
+  <content-editor ng-app="app"></content-editor>
+  <div class="unsupported-browser">
+    <h2>Unsupported Browser</h2>
+  </div>
+
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="js/vendor.js"></script>
+  <script src="js/app.js"></script>
+
+  <script type="text/javascript">
+  if ( browserCheck.isIE11() ) {
+    window.tinyMCE.baseURL = "js";// trailing slash important
+  }
+  </script>
+
+
+  <script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Roboto+Mono::latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.onload = function(){
+      document.body.className += 'rb-font';
+    }
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); </script>
+
+</body>
+</html>

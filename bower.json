@@ -1,0 +1,14 @@
+{
+  "name": "pages",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "1",
+    "angular-material": "~1.0.1",
+    "angular-ui-router": "ui-router#~0.2.15",
+    "angular-resource": "1",
+    "angular-route": "1",
+    "angular-toArrayFilter": "~1.0.1",
+    "angular-ui-tinymce": "~0.0.12",
+    "tinymce-mention": "4.0.0"
+  }
+}

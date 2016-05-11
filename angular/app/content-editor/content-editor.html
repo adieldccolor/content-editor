@@ -1,0 +1,27 @@
+<div class="em-pages" id="angularjs-content-editor">
+
+  <div class="em-pages-wrapper" ng-controller="ContentEditor as editor" ng-class="{'is-fullscreen': fullScreen, 'is-previewing': preview}">
+
+    <div class="em-pages-container _keep-proportions" id="container-keep-proportions"></div>
+
+      <not-supported ng-show="!editor.supported"></not-supported>
+
+      <div ng-show="editor.supported">
+        <!-- Show a preview -->
+        <page-preview ng-show="editor.preview"></page-preview>
+
+        <!-- Show a loading message  -->
+        <page-loader></page-loader>
+
+        <!-- Fake View to Allow Router Init -->
+        <div ui-view></div>
+
+        <page-menu></page-menu>
+        <page-workflow ng-hide="editor.preview"></page-workflow>
+      </div>
+
+
+  </div> <!-- end div.en-pages-wrapper -->
+
+
+</div> <!-- end div.em-pages -->

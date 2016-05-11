@@ -1,0 +1,79 @@
+<div class="page-actions ng-hide" ng-show="editor.pageReady"
+ ng-class="{'is-ready': editor.pageReady, 'is-loading': editor.loading, 'is-new-page': !PageDetails.id}">
+
+  <div class="em-pages-container">
+    <div class="page-filter-bar">
+
+      <div class="helper-fr page-action-buttons">
+        <md-button class="md-default md-raised" ng-click="cancelPageEdit($event)"
+            ng-show="PageDetails.edition.preventSaving && PageDetails.id && !editor.preview">Cancel</md-button>
+
+        <md-button class="md-primary md-hue-2 md-flat" ng-disabled="!PageDetails.edition.preventSaving&&!PageDetails.id"
+         ng-click="togglePreview($event)">
+          <md-icon md-menu-origin class="material-icons">remove_red_eye</md-icon> Preview</md-button>
+
+        <md-button class="md-primary md-hue-2 md-raised" ng-click="savePage($event)" ng-hide="PageDetails.id"
+            ng-disabled="!PageDetails.edition.preventSaving || editor.preview">
+            <md-icon md-menu-origin class="material-icons">save</md-icon> Save</md-button>
+
+        <md-button class="md-primary md-hue-2 md-flat" ng-click="savePage($event)" ng-show="PageDetails.id"
+            ng-disabled="editor.preview || PageDetails.deleted_at">
+            <md-icon md-menu-origin class="material-icons">save</md-icon> Update</md-button>
+
+        <md-menu md-position-mode="target-right target" ng-show="PageDetails.id">
+                <md-button aria-label="More options" class="md-icon-button" ng-click="$mdOpenMenu($event)" ng-disabled="editor.preview">
+                  <md-icon md-menu-origin class="material-icons">more_horiz</md-icon>
+                </md-button>
+                <md-menu-content width="3" >
+                  <md-menu-item>
+                    <md-button ng-href="{{editor.baseWebsiteUrl}}&pageid={{PageDetails.id}}" target="_blank"
+                     ng-disabled="PageDetails.deleted_at">
+                        <div layout="row">
+                          <p flex>View page</p>
+                          <md-icon md-menu-align-target class="material-icons">launch</md-icon>
+                        </div>
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item ng-if="!PageDetails.deleted_at">
+                    <md-button ng-click="removePage($event)">
+                        <div layout="row">
+                          <p flex>Delete page</p>
+                          <md-icon md-menu-align-target class="material-icons">delete</md-icon>
+                        </div>
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item ng-if="PageDetails.deleted_at">
+                    <md-button ng-click="restorePage($event)">
+                        <div layout="row">
+                          <p flex>Restore page</p>
+                          <md-icon md-menu-align-target class="material-icons">restore</md-icon>
+                        </div>
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+
+          <md-button aria-label="Fullscreen" class="md-icon-button" ng-click="toggleFullscreen($event)">
+            <md-icon md-menu-origin class="material-icons" ng-show="!fullScreen">fullscreen</md-icon>
+            <md-icon md-menu-origin class="material-icons" ng-show="fullScreen">fullscreen_exit</md-icon>
+          </md-button>
+      </div>
+
+      <div class="helper-fl">
+        <div class="em-page-icon">
+          <div ng-show="editor.loading" class="page-loading-indicator">
+            <md-progress-circular class="md-hue-5" md-mode="indeterminate" md-diameter="30px"></md-progress-circular>
+          </div>
+          <div ng-hide="editor.loading" class="page-loading-indicator--loaded">
+            <i class="material-icons">description</i>
+          </div>
+        </div>
+
+        <span class="page-app-name">Content Editor</span>
+
+      </div>
+      </div>
+  </div>
+
+    <div class="helper-cb"></div>
+</div>

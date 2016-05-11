@@ -1,0 +1,22 @@
+<div ng-show="!PageDetails.loaded" class="page-content-loaded">
+  <div class="md-content-loader">
+    <md-progress-circular class="md-hue-5" md-mode="indeterminate" md-diameter="100px"></md-progress-circular>
+  </div>
+</div>
+
+<form action="" ng-show="PageDetails.loaded">
+
+  <input type="hidden" ng-model="PageDetails.edition.id" />
+
+  <div class="pform-group">
+    <input type="text" class="new-page-title" placeholder="Page title" ng-model="PageDetails.edition.title" ng-change="pageInputChange()" />
+  </div>
+
+  <div class="pform-group">
+    <textarea class="page-workflow-editor" ui-tinymce="editorOptions" 
+     ng-model="PageDetails.edition.body" ng-change="pageInputChange()"></textarea>
+  </div>
+
+  <seo-tools ng-hide="fullScreen"></seo-tools>
+
+</form>

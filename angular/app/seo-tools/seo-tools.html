@@ -1,0 +1,44 @@
+<div class="page-seo-tools" layout="column" ng-cloak>
+  <md-toolbar class="md-hue-app" ng-class="{'md-hue-app-2': PageDetails.id }">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Toggle panel" ng-show="!fullScreen" ng-click="toggleSEOPanel($event)">
+          <md-icon class="material-icons" ng-hide="panelVisible">expand_more</md-icon>
+          <md-icon class="material-icons" ng-show="panelVisible">expand_less</md-icon>
+        </md-button>
+        <h2 flex>
+          <span>SEO Tools</span>
+        </h2>
+
+        <md-switch ng-model="PageDetails.edition.syncSeo" class="md-primary" ng-true-value="'on'" ng-false-value="'off'">
+          Sync ({{PageDetails.edition.syncSeo}})
+        </md-switch>
+      </div>
+  </md-toolbar>
+
+  <md-content flex layout-padding ng-show="panelVisible||fullScreen">
+
+      <md-input-container class="md-block">
+        <label>Title</label>
+        <input name="title" ng-model="PageDetails.edition.seo.title" ng-change="seoInputChange($event)"
+         md-maxlength="100" maxlength="100">
+      </md-input-container>
+
+      <div class="pform-group">
+        <label class="md-label" for="input_5">Keywords</label>
+        <md-chips
+            ng-model="PageDetails.edition.seo.keywords"
+            placeholder="Enter a keyword"
+            delete-button-label="Remove keyword"
+            delete-hint="Press delete to remove keyword"
+            secondary-placeholder="Enter a keyword" ng-change="seoInputChange($event)"></md-chips>
+      </div>
+
+      <md-input-container class="md-block">
+        <label>Description</label>
+        <textarea rows="5" columns="1" name="description" ng-model="PageDetails.edition.seo.description"
+         ng-change="seoInputChange($event)" ng-keypress="seoInputChange($event)" md-maxlength="150" maxlength="150"></textarea>
+      </md-input-container>
+
+  </md-content>
+
+</div>

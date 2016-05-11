@@ -1,0 +1,64 @@
+<div class="page-sidebar-wrapper" ng-hide="fullScreen">
+
+  <!-- starts exclusion area -->
+  <div class="js-sidebar-exclusion-for-resize">
+
+    <a ui-sref="pageEdit({ pageId: '' })" class="btn-add-page" ng-class="{'active': !PageDetails.id}" md-ink-ripple>
+       <span class="btn-icon-square"><i class="material-icons">add</i></span> Add New Page</a>
+
+    <div class="page-list-search" ng-class="{'visibleSearch': searchVisible}">
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>{{PageDetails.props.filter}}</label>
+        <input ng-model="PageDetails.props.filterQuery.title" />
+      </md-input-container>
+    </div>
+
+    <div class="page-list-info">
+      <span class="number-page-list">{{editor.activePages().length}} pages 
+        <b ng-if="editor.trashed">trashed</b>
+        <b ng-if="!editor.trashed">published</b>
+      </span>
+      <span class="dropdown-options-page-list">
+        <md-menu md-position-mode="target-right target" >
+                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                  <md-icon md-menu-origin class="material-icons">more_horiz</md-icon>
+                </md-button>
+                <md-menu-content width="3" >
+                  <md-menu-item ng-if="editor.trashed">
+                    <md-button ng-click="toggleFilter()">
+                        <div layout="row">
+                          <p flex>Show only published</p>
+                        </div>
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item ng-if="!editor.trashed">
+                    <md-button ng-click="toggleFilter()">
+                        <div layout="row">
+                          <p flex>Show only trashed</p>
+                        </div>
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-divider></md-menu-divider>
+              </md-menu>
+      </span>
+      <div class="helper-cb"></div>
+    </div>
+
+    <!-- end of exclusion area -->
+  </div>
+
+  <ul class="pages-list">
+    <li ng-repeat="article in PagesList | toArray | filter:PageDetails.props.filterQuery.title" ui-sref-active="active" ng-show="editor.showFiltered(article.deleted_at)" id="{{article.id}}" md-ink-ripple>
+      <a ui-sref="pageEdit({ pageId: article.id })" ng-click="changePage($event, article.id)">
+        <span class="page-date">Created {{article.created_at | cmdate:'MMMM dd, yyyy'}}</span>
+        <span class="page-title">{{article.title}}</span>
+        <div class="page-excerpt">{{ article.body | strip_html_tags | limitTo:75}}</div>
+      </a>
+    </li>
+    <li ng-hide="editor.activePages().length">
+      <span class="no-pages-label">There are no results</span>
+    </li>
+  </ul>
+</div>
+
+<seo-tools ng-show="fullScreen"></seo-tools>
