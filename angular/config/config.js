@@ -9,10 +9,13 @@
       this.viewsUrl = '';
       this.SiteAlias = 'responsive_template04';
       this.viewsExt = '.html';
+      this.touched = false;
     }
 
     Config.prototype.setProp = function() {
       var propName, propValue;
+
+      this.touched = true;
 
       if ( arguments.length == 2 ) {
         propName = arguments[0];

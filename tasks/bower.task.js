@@ -44,8 +44,20 @@ Elixir.extend('bower', function(jsOutputFile, jsOutputFolder, cssOutputFile, css
                   "tinymce-dist": {
                     "main": "tinymce.js"
                   },
+                  "tinymce": {
+                    "main": "tinymce.js"
+                  },
+                  "angular-ui-tinymce": {
+                    "main": "src/tinymce.js"
+                  },
                   "tinymce-mention": {
                     "main": "mention/plugin.min.js"
+                  },
+                  "angular-material": {
+                    "main": "angular-material.js"
+                  },
+                  "angular-route": {
+                    "main": "angular-route.js"
                   }
                 }
             }))
@@ -69,6 +81,9 @@ Elixir.extend('bower', function(jsOutputFile, jsOutputFolder, cssOutputFile, css
               {
                 "tinymce-mention": {
                   "main": "css/autocomplete.css"
+                },
+                "angular-material": {
+                  "main": "angular-material.css"
                 }
               }
             }))

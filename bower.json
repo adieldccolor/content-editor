@@ -9,6 +9,7 @@
     "angular-route": "1",
     "angular-toArrayFilter": "~1.0.1",
     "angular-ui-tinymce": "~0.0.12",
-    "tinymce-mention": "4.0.0"
+    "tinymce-mention": "4.0.0",
+    "material-design-icons": "^2.2.3"
   }
 }

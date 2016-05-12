@@ -279,19 +279,16 @@
             $scope.loading = true;
 
             //pageQuery to execute on the current page querying
-            //TODO: remove sp variable when its finally implemented, by now its needed by Adiel's webservice
             var pageQuery = {
-              id: PageDetails.id //Required by php webservice
+              id: PageDetails.id //Required by php webservice,
             };
+
+            if ( !_config.touched ) {
+              pageQuery.sp = 'pages/single'; //required for local environment
+            }
 
             //Query the current page to ensure it exists in the server
             Pages.get(pageQuery, function(resource){
-
-              //TODO: ensure you are getting a valid json object and not a resource instance
-              // var page = resource.toJSON();
-
-              //For now leave the ngResource default method Request Payload and not normal POST
-              // var page = resource;
 
               //Proceed to destroy the page from the server
               resource.$destroy(function(response) {
@@ -311,7 +308,7 @@
                 PageDetails.edition.listenChanges = false;
 
                 //Redirect to homepage
-                $state.go('landing');
+                $state.go('pageEdit', { pageId: '' });
               });
             });
 
@@ -341,10 +338,13 @@
           $scope.loading = true;
 
           //pageQuery to execute on the current page querying
-          //TODO: remove sp variable when its finally implemented, by now its needed by Adiel's webservice
           var pageQuery = {
-            id: PageDetails.id //Required by php webservice
+            id: PageDetails.id //Required by php webservice,
           };
+
+          if ( !_config.touched ) {
+            pageQuery.sp = 'pages/single'; //required for local environment
+          }
 
           //Query the current page to ensure it exists in the server
           Pages.get(pageQuery, function(resource){
@@ -396,28 +396,13 @@
             //Create a new instance of the factory to init a new page
             var page = new Pages(PageDetails.edition);
 
-            //NOTE: add seo data as individual params
-            // page.seoTitle = PageDetails.edition.seo.title;
-            // page.seoDescription = PageDetails.edition.seo.description;
-            // page.seoKeywords = PageDetails.edition.seo.keywords;
-
             page.seo = JSON.stringify(page.seo);
-            page.SiteID = window.SiteID||'';
-
-            // var pagenew=[
-            //   title:page.title,
-            //   body:page.body,
-            //   created_at:page.created_at,
-            //   deleted_at:page.deleted_at,
-            //   update_at:page.update_at,
-            //   seo:page.seo,
-            //   id:page.id,
-            //   noesnada: "esto es un test"
-            // ] ;
+            page.SiteID = _config.SiteID||'';
 
             if( typeof console !== "undefined" ) {
               console.log(PageDetails.edition);
             }
+
             //Send it to the server
             page.$create(function(data) {
               PagesList.push(data);
@@ -442,8 +427,16 @@
           }else{
             //edit page
 
-              //TODO: remove attr "sp" its needed by my webservice only
-              Pages.get({id: PageDetails.id, function(resource){
+              //pageQuery to execute on the current page querying
+              var pageQuery = {
+                id: PageDetails.id //Required by php webservice,
+              };
+
+              if ( !_config.touched ) {
+                pageQuery.sp = 'pages/single'; //required for local environment
+              }
+              
+              Pages.get(pageQuery, function(resource){
 
                 //Override the instace of ngResource with new changes
                 resource.title = PageDetails.edition.title;
@@ -457,7 +450,7 @@
                 // resource.seoDescription = PageDetails.edition.seo.description;
                 // resource.seoKeywords = PageDetails.edition.seo.keywords;
 
-                resource.SiteID = window.SiteID||'';
+                resource.SiteID = _config.SiteID||'';
 
                 //Send the new updates to the server
                 resource.$update(function(response){
@@ -483,7 +476,7 @@
                   //Redirect to the same page url
                   $state.go('pageEdit', { pageId: PageDetails.id });
                 });
-              } //end of Page.get function                
+                
               });
 
 
@@ -650,7 +643,7 @@
             });
 
             editor.on('change', function(e) {
-              $scope.PageDetails.fn.fitSidebarPageList($scope.fullScreen); //Auto grow the pageList sidebar when the editor does
+              //for now do nothing
             });
           },
           autoresize_bottom_margin: 10,
@@ -670,7 +663,6 @@
             self.loading = false;
 
             $scope.PagesList = PagesList;
-            $scope.PageDetails.fn.fitSidebarPageList($scope.fullScreen);
         });
 
 

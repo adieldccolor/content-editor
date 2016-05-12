@@ -65,16 +65,16 @@
         return $resource(_config.WebService||'', { }, {
 
             //Method extend for Pages Factory instance of $resource to allow create an item
-            'create': resourceMethod(),
+            'create': resourceMethod({ sp: 'pages/store' }),
 
             //Method extend for Pages Factory instance of $resource to allow update an item
-            'update': resourceMethod(),
+            'update': resourceMethod({ sp: 'pages/update' }),
 
             //Method extend for Pages Factory instance of $resource to allow delete an item
-            'destroy': resourceMethod(),
+            'destroy': resourceMethod({ sp: 'pages/destroy' }),
 
             //Method extend for Pages Factory instance of $resource to allow restore an item
-            'restore': resourceMethod()
+            'restore': resourceMethod({ sp: 'pages/restore' })
 
 
         });

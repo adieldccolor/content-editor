@@ -84,7 +84,6 @@
         PageDetails.edition.syncSeo = "off";
 
         $rootScope.$$childHead.PageDetails = PageDetails;
-        $rootScope.$$childHead.PageDetails.fn.fitSidebarPageList($rootScope.$$childHead.fullScreen);
 
         //store title, body in seo
         $rootScope.$$childHead.updateSEOFromEdit(p);
