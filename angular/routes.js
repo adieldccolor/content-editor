@@ -11,10 +11,6 @@
         $locationProvider.html5Mode(true).hashPrefix('!');
 
         $stateProvider
-        // .state('landing', {
-        //     url: '/',
-        //     controller: 'LandingController'
-        // })
         .state('pageEdit', {
             url: '/?:pageId',
             controller: 'PageEditCtrl'

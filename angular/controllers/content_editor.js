@@ -17,7 +17,7 @@
         self.pageReady = true;
 
         //Let the app know if something is loading or no
-        self.loading = true;
+        $scope.loading = true;
 
         //Let the app know if the current page is in preview or not
         self.preview = false;
@@ -239,7 +239,7 @@
         $scope.removeFromPageList = function(){
 
           //Set the scope to loading
-          self.loading = true;
+          $scope.loading = true;
 
           //Query all the pages from the sever
           Pages.query().$promise.then(function (response) {
@@ -248,7 +248,7 @@
               $scope.PagesList = PagesList;
 
               //set the loading state to false
-              self.loading = false;
+              $scope.loading = false;
           });
         };
 
@@ -293,16 +293,18 @@
               //Proceed to destroy the page from the server
               resource.$destroy(function(response) {
 
-                //Set the editor status to not loading (ready)
-                $scope.loading = false;
-
                 //Update PagesList factory to update UI
                 $scope.removeFromPageList();
                 $scope.PageDetails = PageDetails;
 
 
-                //Show a toast message confirming page deletion
-                ToastService.show('The page was removed successfully!');
+                setTimeout(function() {
+                  //Show a toast message confirming page deletion
+                  ToastService.show('The page was removed successfully!');
+
+                  //Set the editor status to not loading (ready)
+                  $scope.loading = false;
+                }, 500);
 
                 PageDetails.edition.preventSaving = false;
                 PageDetails.edition.listenChanges = false;
@@ -358,16 +360,18 @@
             //Proceed to destroy the page from the server
             resource.$restore(function(response) {
 
-              //Set the editor status to not loading (ready)
-              $scope.loading = false;
-
               //Update PagesList factory to update UI
               $scope.removeFromPageList();
               $scope.PageDetails = PageDetails;
 
 
-              //Show a toast message confirming page deletion
-              ToastService.show('The page was restored successfully!');
+              setTimeout(function() {
+                //Show a toast message confirming page deletion
+                ToastService.show('The page was restored successfully!');
+
+                //Set the editor status to not loading (ready)
+                $scope.loading = false;
+              }, 500);
 
               PageDetails.edition.preventSaving = false;
               PageDetails.edition.listenChanges = false;
@@ -660,7 +664,7 @@
         //Load the pages resource from the webservice
         Pages.query().$promise.then(function (response) {
             PagesList = response;
-            self.loading = false;
+            $scope.loading = false;
 
             $scope.PagesList = PagesList;
         });

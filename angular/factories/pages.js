@@ -71,10 +71,10 @@
             'update': resourceMethod({ sp: 'pages/update' }),
 
             //Method extend for Pages Factory instance of $resource to allow delete an item
-            'destroy': resourceMethod({ sp: 'pages/destroy' }),
+            'destroy': resourceMethod({ sp: 'pages/destroy', Active: 0 }),
 
             //Method extend for Pages Factory instance of $resource to allow restore an item
-            'restore': resourceMethod({ sp: 'pages/restore' })
+            'restore': resourceMethod({ sp: 'pages/restore', Active: 1 })
 
 
         });

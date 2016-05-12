@@ -6,7 +6,7 @@
 
       <div class="helper-fr page-action-buttons">
         <md-button class="md-default md-raised" ng-click="cancelPageEdit($event)"
-            ng-show="PageDetails.edition.preventSaving && PageDetails.id && !editor.preview">Cancel</md-button>
+            ng-show="PageDetails.edition.preventSaving && PageDetails.id && !editor.preview && !PageDetails.deleted_at">Cancel</md-button>
 
         <md-button class="md-primary md-hue-2 md-flat" ng-disabled="!PageDetails.edition.preventSaving&&!PageDetails.id"
          ng-click="togglePreview($event)">

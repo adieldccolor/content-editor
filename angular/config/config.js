@@ -10,6 +10,7 @@
       this.SiteAlias = 'responsive_template04';
       this.viewsExt = '.html';
       this.touched = false;
+      this.rootFile = "index.html";
     }
 
     Config.prototype.setProp = function() {
@@ -52,7 +53,7 @@
     Config.prototype.refresh = function() {
 
       //Set BaseTag
-      var baseUrl = window.location.href.replace( window.location.search, '');
+      var baseUrl = window.location.href.replace( window.location.search, '') + _config.rootFile;
       angular.element('base').attr('href', baseUrl);
 
       //If user wants to override options
