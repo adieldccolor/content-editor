@@ -35,34 +35,22 @@ Elixir.extend('bower', function(jsOutputFile, jsOutputFolder, cssOutputFile, css
     };
 
     new Task('bower-js', function() {
-        return gulp.src(mainBowerFiles({
-              "overrides":
-                {
-                  "jquery": {
-                    "main": "jquery.min.js"
-                  },
-                  "tinymce-dist": {
-                    "main": "tinymce.js"
-                  },
-                  "tinymce": {
-                    "main": "tinymce.js"
-                  },
-                  "angular-ui-tinymce": {
-                    "main": "src/tinymce.js"
-                  },
-                  "tinymce-mention": {
-                    "main": "mention/plugin.min.js"
-                  },
-                  "angular-material": {
-                    "main": "angular-material.js"
-                  },
-                  "angular-route": {
-                    "main": "angular-route.js"
-                  }
-                }
-            }))
+        var filterJS = filter([
+          '**/angular/angular.js',
+          '**/angular-animate/angular-animate.js',
+          '**/angular-aria/angular-aria.js',
+          '**/angular-messages/angular-messages.js',
+          '**/angular-resource/angular-resource.js',
+          '**/angular-route/angular-route.js',
+          '**/angular-toArrayFilter/toArrayFilter.js',
+          '**/angular-ui-router/release/angular-ui-router.js',
+          '**/tinymce-dist/tinymce.js',
+          '**/angular-ui-tinymce/src/tinymce.js'
+          ]);
+
+        return gulp.src("./bower_components/**/*.js")
             .on('error', onError)
-            .pipe(filter('**/*.js'))
+            .pipe(filterJS)
             .pipe(concat(jsFile, {sourcesContent: true}))
             .pipe(gulpIf(Elixir.config.production, uglify()))
             .pipe(gulp.dest(jsOutputFolder || Elixir.config.js.outputFolder))
