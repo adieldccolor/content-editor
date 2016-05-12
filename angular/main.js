@@ -19,14 +19,15 @@
         'app.config'
         ]);
 
-    angular.module('app.routes', ['ngMaterial', 'ui.router']);
-    angular.module('app.controllers', ['ngMaterial', 'ui.router', 'angular-toArrayFilter']);
+    angular.module('app.routes', ['ui.router']);
+    angular.module('app.controllers', ['ngMaterial', 'ui.router', 'ui.tinymce', 'angular-toArrayFilter']);
     angular.module('app.filters', []);
     angular.module('app.services', ['ngMaterial']);
-    angular.module('app.factories', ['ngMaterial', 'ngResource', 'ngRoute']);
+    angular.module('app.factories', ['ngResource', 'ngRoute']);
     angular.module('app.directives', []);
     angular.module('app.config', ['ngMaterial']);
 
     g._contentEditor = app;
+    g.app = app;
 
 })(window);
