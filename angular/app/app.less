@@ -236,6 +236,7 @@
   .page-workflow-area{
     float: left;
     width: 730px;
+    background-color: #fff;
 
     form{
       padding: 20px 20px 0px;
@@ -384,6 +385,32 @@
       }
     }
   }
+
+
+  &.is-loading-pages{
+    position: relative;
+    min-height: 100px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      height: 25px;
+      width: 25px;
+      animation: rotation 1s infinite linear;
+      border: 1px solid #ECECEC;
+      border-top-color: #03A9F4;
+      box-shadow: 0px 0px 2px #444;
+      border-radius: 50%;
+      top: 50px;
+      left: 50%;
+      margin-left: -12px;
+    }
+
+    li {
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+  }
 }
 
 
@@ -509,11 +536,13 @@ md-toolbar.md-hue-app{
 
 .md-dialog-container{
   position: absolute;
+  z-index: 1000;
 }
 
 md-backdrop.md-dialog-backdrop{
   position: fixed;
   min-height: 100%;
+  z-index: 1000;
 }
 
 md-toast{

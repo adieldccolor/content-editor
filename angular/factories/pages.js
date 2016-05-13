@@ -51,6 +51,10 @@
                 }
                }
 
+               if ( key == "SiteID" && value === "" ) {
+                value = _config.SiteID;
+               }
+
                 //push the new key, value to the form data from json object
                 str.push(key + "=" + value);
               }

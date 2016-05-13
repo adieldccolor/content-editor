@@ -46,7 +46,7 @@
     <!-- end of exclusion area -->
   </div>
 
-  <ul class="pages-list">
+  <ul class="pages-list" ng-class="{'is-loading-pages': loading}">
     <li ng-repeat="article in PagesList | toArray | filter:PageDetails.props.filterQuery.title" ui-sref-active="active" ng-show="editor.showFiltered(article.deleted_at)" id="{{article.id}}" md-ink-ripple>
       <a ui-sref="pageEdit({ page: _config.rootFile ,pageId: article.id })" ng-click="changePage($event, article.id)">
         <span class="page-date">Created {{article.created_at | cmdate:'MMMM dd, yyyy'}}</span>
