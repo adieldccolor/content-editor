@@ -4,33 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Pages</title>
+  <title>Loading...</title>
 
-  <base href="./">
 </head>
 <body>
+
+  <base href="./">
   <style>body,html{margin: 0;padding: 0;}.ng-hide{display: none;}</style>
 
-  <link href="assets/fonts/material-icons.css" rel="stylesheet">
-  <link href="assets/css/vendor.css" rel="stylesheet">
-  <link href="assets/css/app.css" rel="stylesheet">
+  <link href="UserControl/MortgageCEO_Forms/ContentEditor/assets/fonts/material-icons.css" rel="stylesheet">
+  <link href="UserControl/MortgageCEO_Forms/ContentEditor/assets/css/vendor.css" rel="stylesheet">
+  <link href="UserControl/MortgageCEO_Forms/ContentEditor/assets/css/app.css" rel="stylesheet">
 
   <!-- Here we can override configuration for our environment -->
   <script type="text/javascript">
   window._envConfig = {
-    // viewsUrl: '/UserControl/MortgageCEO_Forms/'
+    // viewsUrl: 'http://localhost/elliemae/editor/local/UserControl/MortgageCEO_Forms/ContentEditor/'
+    viewsUrl: './UserControl/MortgageCEO_Forms/ContentEditor/'
     // rootFile: 'pages.html'
   };
   </script>
 
-  <content-editor ng-app="app"></content-editor>
+  <!-- Add some white-space to the top -->
+  <div class="crm-spacer"></div>
+
+  <content-editor ng-app="app" class="em-is-loading">
+    <div class="menu-placeholder"></div>
+  </content-editor>
+
+  <!-- Show unsupported message when is IE10 or less -->
   <div class="unsupported-browser">
     <h2>Unsupported Browser</h2>
   </div>
 
-  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-  <script src="assets/js/vendor.js"></script>
-  <script src="assets/js/app.js"></script>
+  <!-- Add some white-space to the bottom -->
+  <div class="crm-spacer"></div>
+
+  <script src="UserControl/MortgageCEO_Forms/ContentEditor/assets/js/vendor.js"></script>
+  <script src="UserControl/MortgageCEO_Forms/ContentEditor/assets/js/app.js"></script>
 
   <script type="text/javascript">
   if ( browserCheck.isIE11() ) {

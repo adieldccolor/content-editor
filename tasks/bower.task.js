@@ -38,9 +38,6 @@ Elixir.extend('bower', function(jsOutputFile, jsOutputFolder, cssOutputFile, css
         return gulp.src(mainBowerFiles({
               "overrides":
                 {
-                  "jquery": {
-                    "main": "jquery.min.js"
-                  },
                   "tinymce-dist": {
                     "main": "tinymce.js"
                   },

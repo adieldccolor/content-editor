@@ -549,10 +549,10 @@
               { name: 'Address', tag: '{%FullAddress%}'},
               { name: 'Company ID', tag: '{%CompanyID%}'},
               { name: 'Company Email Notification', tag: '{%notificationEmail%}'},
-              { name: 'Menu Header', tag: '{%menuHeader%}'},
-              { name: 'Menu Footer', tag: '{%menuFooter%}'},
-              { name: 'Menu Sidebar', tag: '{%menuSidebar%}'},
-              { name: 'Menu Other', tag: '{%menuOther%}'},
+              { name: 'Header Menu', tag: '{%menuHeader%}'},
+              { name: 'Footer Menu', tag: '{%menuFooter%}'},
+              { name: 'Sidebar Menu', tag: '{%menuSidebar%}'},
+              { name: 'Secondary Menu', tag: '{%menuOther%}'},
               { name: 'Company ID', tag: '{%CompanyID%}'},
               { name: 'Company Email Notification', tag: '{%notificationEmail%}'},
               { name: 'Consultant SiteID', tag: '{%LOSiteID%}'},
@@ -610,7 +610,7 @@
                      '</li>';
             },
             insert: function(item) { //How the result will be inserted in the editor when is selected/clicked
-              return '<span>' + item.tag + '</span>';
+              return '<span class="crm-customtag" alt="' + item.name + '">' + item.tag + '</span>';
             }
           },
           statusbar: false, //hide the statusbar
@@ -618,36 +618,30 @@
                     'bullist numlist | link image | crmtags | code', // Setup the toolbar buttons
           menubar: false, //hide the menubar
           setup: function(editor) { //Add some extra settings
-            //NOTE: menu item removed because doesnt support ajax
-            editor.addButton('crmtags', {
-              type: 'menubutton',
-              text: 'Tags',
-              icon: 'anchor',
-              menu: [{
-                text: 'Company Name',
-                onclick: function() {
-                  editor.insertContent('&nbsp;<span>{% CompanyName %}</span>&nbsp;');
-                }
-              }, {
-                text: 'Company Phone',
-                onclick: function() {
-                  editor.insertContent('&nbsp;<span>{% CompanyPhone %}</span>&nbsp;');
-                }
-              }, {
-                text: 'Company Address',
-                onclick: function() {
-                  editor.insertContent('&nbsp;<span>{% CompanyAddress %}</span>&nbsp;');
-                }
-              }, {
-                text: 'Company Email',
-                onclick: function() {
-                  editor.insertContent('&nbsp;<span>{% CompanyEmail %}</span>&nbsp;');
-                }
-              }]
-            });
-
             editor.on('change', function(e) {
               //for now do nothing
+
+              function performResize() {
+                var workflowHeight = angular.element('workflow').find('form').outerHeight();
+                var excludeHeight = angular.element('.js-sidebar-exclusion-for-resize').outerHeight() + 1;
+                var minheight = 700;
+                var newHeight = minheight;
+
+                if ( workflowHeight >= minheight ) {
+                  newHeight = workflowHeight;
+                }
+
+                newHeight = newHeight - excludeHeight;
+
+                angular.element('.pages-list').css({ maxHeight: newHeight });
+              }
+
+              if ( window._workflowResizeTimer !== undefined && window._workflowResizeTimer !== null ) {
+                clearTimeout(window._workflowResizeTimer);
+              }
+
+              window._workflowResizeTimer = setTimeout(performResize, 100);
+              performResize();
             });
           },
           autoresize_bottom_margin: 10,
@@ -665,6 +659,8 @@
         Pages.query().$promise.then(function (response) {
             PagesList = response;
             $scope.loading = false;
+
+            angular.element('content-editor').removeClass('em-is-loading');
 
             $scope.PagesList = PagesList;
         });

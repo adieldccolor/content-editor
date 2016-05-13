@@ -41,6 +41,9 @@
         if ( $stateParams.pageId !== undefined && $stateParams.pageId !== '' ) {
           $state.go('pageEdit', { page: _config.rootFile, pageId: '' });
         }
+
+        document.title = 'New Page | EncompassCRM';
+
       }
 
 
@@ -95,6 +98,8 @@
         if ( p.deleted_at ) {
           $rootScope.$$childHead.editor.trashed = true;
         }
+
+        document.title = 'Edit Page | EncompassCRM';
       }
 
 

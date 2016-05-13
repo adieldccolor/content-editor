@@ -16,8 +16,6 @@
     Config.prototype.setProp = function() {
       var propName, propValue;
 
-      this.touched = true;
-
       if ( arguments.length == 2 ) {
         propName = arguments[0];
         propValue = arguments[1];
@@ -36,6 +34,10 @@
 
           if ( propName == "viewsUrl" ) {
             this[propName] = this.baseClientSiteUrl + propValue;
+          }
+
+          if ( propName == "WebService" ) {
+            this.touched = true;
           }
 
         }

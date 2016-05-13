@@ -10,10 +10,10 @@ elixir.css = {};
 elixir.js = {};
 elixir.fonts = {};
 
-elixir.css.outputFolder = './assets/css';
-elixir.js.outputFolder = './assets/js';
-elixir.views.outputFolder = './public/views';
-elixir.fonts.outputFolder = './assets/fonts'
+elixir.css.outputFolder = './UserControl/MortgageCEO_Forms/ContentEditor/assets/css';
+elixir.js.outputFolder = './UserControl/MortgageCEO_Forms/ContentEditor/assets/js';
+elixir.views.outputFolder = './UserControl/MortgageCEO_Forms/ContentEditor/views';
+elixir.fonts.outputFolder = './UserControl/MortgageCEO_Forms/ContentEditor/assets/fonts'
 
 elixir(function(mix){
     mix

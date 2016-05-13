@@ -47,6 +47,7 @@ bower_components
 .bower-registry
 .bower-tmp
 
+### custom ignores
 public/
 js/
 css/
@@ -54,3 +55,5 @@ prototype/
 webservice/
 assets/
 contentEditor/
+.sublime-gulp.cache
+UserControl/
