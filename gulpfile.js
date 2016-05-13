@@ -1,10 +1,11 @@
 var elixir = require('laravel-elixir');
 require('./tasks/angular.task.js');
 require('./tasks/bower.task.js');
+require('./tasks/zipfile.task.js');
 require('laravel-elixir-livereload');
 
 //Set true or false if in productor or not
-elixir.config.production = false;
+elixir.config.production = true;
 elixir.views = {};
 elixir.css = {};
 elixir.js = {};
@@ -54,5 +55,8 @@ elixir(function(mix){
 
         //copy material-icons webfont
         .copy('./bower_components/material-design-icons/iconfont/', 
-              elixir.fonts.outputFolder);
+              elixir.fonts.outputFolder)
+
+        //create zipfile
+        .zipFile('./');
 });
