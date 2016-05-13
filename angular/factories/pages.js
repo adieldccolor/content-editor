@@ -62,19 +62,47 @@
           
           return defaults;
         };
+
+        //Default parameters sent in every request
+        var createParams = {
+          SiteID: _config.SiteID
+        };
+
+        var updateParams = {
+          SiteID: _config.SiteID
+        };
+
+        var destroyParams = {
+          SiteID: _config.SiteID,
+          Active: 0
+        };
+
+        var restoreParams = {
+          SiteID: _config.SiteID,
+          Active: 1
+        };
+
+        if ( !_config.touched ) {
+          createParams.sp = 'pages/store';
+          updateParams.sp = 'pages/update';
+          destroyParams.sp = 'pages/destroy';
+          restoreParams.sp = 'pages/restore';
+        }
+
+
         return $resource(_config.WebService||'', { }, {
 
             //Method extend for Pages Factory instance of $resource to allow create an item
-            'create': resourceMethod({ sp: 'pages/store' }),
+            'create': resourceMethod(createParams),
 
             //Method extend for Pages Factory instance of $resource to allow update an item
-            'update': resourceMethod({ sp: 'pages/update' }),
+            'update': resourceMethod(updateParams),
 
             //Method extend for Pages Factory instance of $resource to allow delete an item
-            'destroy': resourceMethod({ sp: 'pages/destroy', Active: 0 }),
+            'destroy': resourceMethod(destroyParams),
 
             //Method extend for Pages Factory instance of $resource to allow restore an item
-            'restore': resourceMethod({ sp: 'pages/restore', Active: 1 })
+            'restore': resourceMethod(restoreParams)
 
 
         });

@@ -292,7 +292,7 @@
             Pages.get(pageQuery, function(resource){
 
               //Proceed to destroy the page from the server
-              resource.$destroy(function(response) {
+              resource.$destroy({ id: PageDetails.id }, function(response) {
 
                 //Update PagesList factory to update UI
                 $scope.removeFromPageList();
@@ -313,6 +313,7 @@
                 //Redirect to homepage
                 $state.go('pageEdit', { page: _config.rootFile,pageId: '' });
               });
+
             });
 
           };
@@ -360,7 +361,7 @@
             // var page = resource;
 
             //Proceed to destroy the page from the server
-            resource.$restore(function(response) {
+            resource.$restore({ id: PageDetails.id }, function(response) {
 
               //Update PagesList factory to update UI
               $scope.removeFromPageList();
@@ -380,6 +381,7 @@
 
               PageDetails.deleted_at = null;
               self.trashed = false;
+
             });
           });
 
@@ -460,7 +462,7 @@
                 resource.SiteID = _config.SiteID||'';
 
                 //Send the new updates to the server
-                resource.$update(function(response){
+                resource.$update({ id: PageDetails.id }, function(response){
 
                   //set the editor status to loading
                   $scope.loading = false;
