@@ -23,7 +23,7 @@ Elixir.extend('zipFile', function(outputFolder) {
     };
 
     new Task('zipfile', function() {
-        return gulp.src(['./UserControl/', 'index.html'])
+        return gulp.src(['./UserControl/**/*', 'index.html'])
             .on('error', onError)
             .pipe(gulpIf(Elixir.config.production, zip('content-editor.zip')))
             .pipe(gulp.dest(outputFolder))
