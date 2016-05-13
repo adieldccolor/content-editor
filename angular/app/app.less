@@ -513,6 +513,7 @@ md-toolbar.md-hue-app{
 
 md-backdrop.md-dialog-backdrop{
   position: fixed;
+  min-height: 100%;
 }
 
 md-toast{
@@ -533,32 +534,38 @@ md-toast{
   height: 40px;
 }
 
-content-editor.em-is-loading{
- display: block;
 
- min-height: 450px;
- 
- &:before{
-  content: "";
-  position: relative;
-  height: 50px;
-  width: 50px;
-  animation: rotation 1s infinite linear;
-  border: 1px solid #ECECEC;
-  border-top-color: #03A9F4;
-  box-shadow: 0px 0px 2px #444;
-  border-radius: 50%;
-  top: 220px;
-  margin: 0 auto;
-  display: block;
- } 
 
- .menu-placeholder{
-    background-color: #8B9ADE;
-    max-width: @container;
-    margin: 0 auto 0;
-    height: 60px;
- }
+content-editor{
+  position: static !important;
+
+  &.em-is-loading{
+   display: block;
+
+   min-height: 450px;
+   
+   &:before{
+    content: "";
+    position: relative;
+    height: 50px;
+    width: 50px;
+    animation: rotation 1s infinite linear;
+    border: 1px solid #ECECEC;
+    border-top-color: #03A9F4;
+    box-shadow: 0px 0px 2px #444;
+    border-radius: 50%;
+    top: 220px;
+    margin: 0 auto;
+    display: block;
+   } 
+
+   .menu-placeholder{
+      background-color: #8B9ADE;
+      max-width: @container;
+      margin: 0 auto 0;
+      height: 60px;
+   }
+  }
 }
 
 @keyframes rotation {

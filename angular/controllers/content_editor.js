@@ -242,7 +242,7 @@
           $scope.loading = true;
 
           //Query all the pages from the sever
-          Pages.query().$promise.then(function (response) {
+          Pages.query({ SiteID: _config.SiteID }).$promise.then(function (response) {
               //Reasign to the pagelist factory
               PagesList = response;
               $scope.PagesList = PagesList;
@@ -311,7 +311,7 @@
                 PageDetails.edition.listenChanges = false;
 
                 //Redirect to homepage
-                $state.go('pageEdit', { page: _config.rootFile,pageId: '' });
+                $state.go('pageEdit', { page: _config.rootFile, pageId: '' });
               });
 
             });

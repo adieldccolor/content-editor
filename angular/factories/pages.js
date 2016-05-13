@@ -41,6 +41,16 @@
                  }
                }
 
+               if ( key.toLowerCase() == "active" ) {
+                if ( value == "True" ) {
+                  value = 1;
+                }
+
+                if ( value == "False" ) {
+                  value = 0;
+                }
+               }
+
                 //push the new key, value to the form data from json object
                 str.push(key + "=" + value);
               }
