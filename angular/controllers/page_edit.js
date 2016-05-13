@@ -123,8 +123,18 @@
           // if I can share Data Between scopes
           var presult = findPage($stateParams.pageId);
 
+          //pageQuery to execute on the current page querying
+          var pageQuery = {
+            id: $stateParams.pageId, //Required by php webservice,
+            SiteID: _config.SiteID
+          };
+
+          if ( !_config.touched ) {
+            pageQuery.sp = 'pages/single'; //required for local environment
+          }
+
           if( presult.id === "" ){
-            var s = Pages.get({ id: $stateParams.pageId, sp: 'pages/single' }).$promise.then(function(response){
+            var s = Pages.get(pageQuery).$promise.then(function(response){
               if( response.error && response.errorNumber == 404 ){
                 ToastService.show('The page you are looking for does not exists. Redirecting to new page...');
                 showLanding();

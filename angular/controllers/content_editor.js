@@ -280,7 +280,8 @@
 
             //pageQuery to execute on the current page querying
             var pageQuery = {
-              id: PageDetails.id //Required by php webservice,
+              id: PageDetails.id, //Required by php webservice,
+              SiteID: _config.SiteID
             };
 
             if ( !_config.touched ) {
@@ -341,7 +342,8 @@
 
           //pageQuery to execute on the current page querying
           var pageQuery = {
-            id: PageDetails.id //Required by php webservice,
+            id: PageDetails.id, //Required by php webservice,
+            SiteID: _config.SiteID
           };
 
           if ( !_config.touched ) {
@@ -433,7 +435,8 @@
 
               //pageQuery to execute on the current page querying
               var pageQuery = {
-                id: PageDetails.id //Required by php webservice,
+                id: PageDetails.id, //Required by php webservice,
+                SiteID: _config.SiteID
               };
 
               if ( !_config.touched ) {
@@ -656,7 +659,7 @@
         $scope.PagesList = PagesList;
 
         //Load the pages resource from the webservice
-        Pages.query().$promise.then(function (response) {
+        Pages.query({ SiteID: _config.SiteID }).$promise.then(function (response) {
             PagesList = response;
             $scope.loading = false;
 

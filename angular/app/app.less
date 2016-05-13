@@ -35,10 +35,15 @@
       margin: 0;
       max-width: 100%;
       overflow: auto;
+      z-index: 999;
 
       .em-pages-container{
         margin: 0 auto;
         max-width: 100%;
+
+        &.main-workflow{
+          display: block;
+        }
 
         &.page-preview-container{
           max-width: @container;
@@ -503,7 +508,7 @@ md-toolbar.md-hue-app{
 
 
 .md-dialog-container{
-  position: fixed;
+  position: absolute;
 }
 
 md-backdrop.md-dialog-backdrop{
@@ -530,6 +535,8 @@ md-toast{
 
 content-editor.em-is-loading{
  display: block;
+
+ min-height: 450px;
  
  &:before{
   content: "";
@@ -541,7 +548,7 @@ content-editor.em-is-loading{
   border-top-color: #03A9F4;
   box-shadow: 0px 0px 2px #444;
   border-radius: 50%;
-  top: 200px;
+  top: 220px;
   margin: 0 auto;
   display: block;
  } 
