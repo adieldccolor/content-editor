@@ -52,10 +52,6 @@
 
     Config.prototype.refresh = function() {
 
-      //Set BaseTag
-      var baseUrl = window.location.href.replace( window.location.search, '') + _config.rootFile;
-      angular.element('base').attr('href', baseUrl);
-
       //If user wants to override options
       if ( typeof _envConfig !== "undefined" ) {
         for ( var key in _envConfig ) {
@@ -64,6 +60,14 @@
           }
         }
       }
+
+      //Set BaseTag
+      // var baseSearch = window.location.search;
+      // var baseUrl =  window.location.href.replace( baseSearch, '').replace(_config.rootFile, '') + _config.rootFile + baseSearch;
+      var baseUrl = window.location.href.split('/');
+      baseUrl[ baseUrl.length - 1 ] = '';
+      baseUrl = baseUrl.join('/');
+      angular.element('base').attr('href', baseUrl);
     };
 
     g._config = new Config();

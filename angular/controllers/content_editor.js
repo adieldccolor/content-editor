@@ -310,7 +310,7 @@
                 PageDetails.edition.listenChanges = false;
 
                 //Redirect to homepage
-                $state.go('pageEdit', { pageId: '' });
+                $state.go('pageEdit', { page: _config.rootFile,pageId: '' });
               });
             });
 
@@ -424,7 +424,7 @@
 
               PageDetails.edition.preventSaving = false;
               PageDetails.edition.listenChanges = false;
-              $state.go('pageEdit', { pageId: data.id });
+              $state.go('pageEdit', { page: _config.rootFile,pageId: data.id });
             }, page);
 
             //Else if the id is present, so update the page
@@ -478,7 +478,7 @@
                   PageDetails.edition.listenChanges = true;
 
                   //Redirect to the same page url
-                  $state.go('pageEdit', { pageId: PageDetails.id });
+                  $state.go('pageEdit', { page: _config.rootFile, pageId: PageDetails.id });
                 });
                 
               });

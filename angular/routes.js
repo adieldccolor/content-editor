@@ -7,12 +7,14 @@
 
     angular.module('app.routes').config( function($stateProvider, $urlRouterProvider, $locationProvider ) {
 
-        $urlRouterProvider.otherwise('/');
-        $locationProvider.html5Mode(true).hashPrefix('!');
+        $urlRouterProvider.otherwise(_config.rootFile + '?norel');
+        $locationProvider.html5Mode(true);
+
+        var pageEditUrl = '/' + _config.rootFile + '?:pageId';
 
         $stateProvider
         .state('pageEdit', {
-            url: '/?:pageId',
+            url: pageEditUrl,
             controller: 'PageEditCtrl'
         });
 

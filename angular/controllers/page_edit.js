@@ -4,8 +4,6 @@
     angular.module('app.controllers').controller('PageEditCtrl',
     function($stateParams, $scope, $rootScope, $window, Pages, PagesList, PageDetails, DialogService, ToastService, $state ) {
 
-
-
       function showLanding() {
         PageDetails.loaded = true;
 
@@ -39,6 +37,10 @@
 
         $rootScope.$$childHead.PageDetails = PageDetails;
         $rootScope.$$childHead.editor.loading = false;
+
+        if ( $stateParams.pageId !== undefined && $stateParams.pageId !== '' ) {
+          $state.go('pageEdit', { page: _config.rootFile, pageId: '' });
+        }
       }
 
 
@@ -146,15 +148,22 @@
         if( PageDetails.id === "" ){
           showLanding();
         }else{
-          $state.go('pageEdit', { pageId: PageDetails.id });
+          $state.go('pageEdit', { page: _config.rootFile, pageId: PageDetails.id });
         }
       }
 
-      if( PageDetails.edition.preventSaving && PageDetails.edition.id != $stateParams.pageId ){
+      if( PageDetails.edition.preventSaving 
+         && PageDetails.edition.id != $stateParams.pageId
+         && $stateParams.pageId != undefined && $stateParams.pageId !== '' ){
           DialogService.confirm("Warning", "If you continue your changes will get lost", 'Ok', 'Cancel', showNextContent, stayOnPage);
       }else{
         PageDetails.loaded = false;
-        showNextContent();
+        
+        if ( $stateParams.pageId != undefined && $stateParams.pageId !== '' ) {
+          showNextContent();
+        } else {
+          showLanding();
+        }
       }
 
   });
